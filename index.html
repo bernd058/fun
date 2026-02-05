@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Kickbase Rückrunde 2025/26</title>
+<style>
+  body { font-family: Arial, sans-serif; background:#1a1a2e; color:white; text-align:center; padding:30px;}
+  button { padding:12px 24px; margin:8px; background:#0fbcf9; border:none; border-radius:4px; cursor:pointer; }
+  button:hover{ background:#0994c2;}
+  .player { border:1px solid #334; margin:8px; padding:10px; border-radius:6px; background:#16213e;}
+</style>
+</head>
+<body>
+
+<h1>⚽ Bundesliga Rückrunde 2025/26 Berater</h1>
+<div id="step"></div>
+<div id="actions"></div>
+<div id="results"></div>
+
+<script>
+let players = [];
+let budget = 0;
+
+fetch("players.json")
+ .then(res => res.json())
+ .then(data => { players = data; askBudget(); });
+
+function askBudget(){
+  document.getElementById("step").innerText = "Wie hoch ist dein Budget (in Mio)?";
+  document.getElementById("actions").innerHTML = `
+    <input type="number" id="budg" placeholder="z.B. 100" style="padding:8px; width:120px;">
+    <button onclick="setBudget()">OK</button>
+  `;
+  document.getElementById("results").innerHTML = "";
+}
+
+function setBudget(){
+  budget = parseFloat(document.getElementById("budg").value) || 0;
+  askGoal();
+}
+
+function askGoal(){
+  document.getElementById("step").innerText = "Was willst du priorisieren?";
+  document.getElementById("actions").innerHTML = `
+    <button onclick="showRecommendations('points')">Maximale Punkte</button>
+    <button onclick="showRecommendations('value')">Max. Marktwert</button>
+    <button onclick="showRecommendations('balance')">Balance Score</button>
+  `;
+  document.getElementById("results").innerHTML = "";
+}
+
+function showRecommendations(goal){
+  let filtered = players.filter(p => p.marketValue <= budget);
+
+  if(goal == 'points'){
+    filtered.sort((a,b) => b.points - a.points);
+  } else if(goal == 'value'){
+    filtered.sort((a,b) => b.marketValue - a.marketValue);
+  } else {
+    filtered.sort((a,b) => (b.points + b.startChance*100) - (a.points + a.startChance*100));
+  }
+
+  let top5 = filtered.slice(0,5);
+  document.getElementById("results").innerHTML = `<h2>Top Empfehlungen</h2>`;
+
+  top5.forEach(p => {
+    document.getElementById("results").innerHTML += `
+      <div class="player">
+        <strong>${p.name}</strong> (${p.team})<br>
+        Position: ${p.position}<br>
+        Marktwert: ${p.marketValue} Mio<br>
+        Punkte: ${p.points}<br>
+        Startelf-Chance: ${(p.startChance*100).toFixed(0)}%<br>
+      </div>
+    `;
+  });
+
+  document.getElementById("actions").innerHTML = `
+    <button onclick="askBudget()">Neu starten</button>
+  `;
+}
+
+</script>
+</body>
+</html>

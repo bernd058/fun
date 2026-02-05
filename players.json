@@ -1,0 +1,16 @@
+[
+  { "name": "Jamal Musiala",         "position": "MF",  "team": "Bayern",  "marketValue": 140, "points": 240, "startChance": 0.95 },
+  { "name": "Michael Olise",         "position": "MF",  "team": "Bayern",  "marketValue": 100, "points": 220, "startChance": 0.9  },
+  { "name": "Harry Kane",           "position": "ST",  "team": "Bayern",  "marketValue": 75,  "points": 200, "startChance": 0.9  },
+  { "name": "Luis Díaz",            "position": "ST",  "team": "Bayern",  "marketValue": 70,  "points": 180, "startChance": 0.85 },
+  { "name": "Aleksandar Pavlovic",  "position": "MF",  "team": "Bayern",  "marketValue": 55,  "points": 175, "startChance": 0.8  },
+  { "name": "Karim Adeyemi",        "position": "ST",  "team": "Dortmund","marketValue": 45,  "points": 165, "startChance": 0.85 },
+  { "name": "Serhou Guirassy",      "position": "ST",  "team": "Dortmund","marketValue": 45,  "points": 150, "startChance": 0.8  },
+  { "name": "Joshua Kimmich",       "position": "MF",  "team": "Bayern",  "marketValue": 45,  "points": 170, "startChance": 0.9  },
+  { "name": "Felix Nmecha",         "position": "MF",  "team": "Dortmund","marketValue": 28,  "points": 140, "startChance": 0.8  },
+  { "name": "Nico Schlotterbeck",   "position": "DEF", "team": "Dortmund","marketValue": 40,  "points": 130, "startChance": 0.85 },
+  { "name": "Hugo Larsson",         "position": "MF",  "team": "Eintracht","marketValue": 40, "points": 135, "startChance": 0.8  },
+  { "name": "Edmond Tapsoba",       "position": "DEF", "team": "Leverkusen","marketValue": 35,"points": 120, "startChance": 0.85 },
+  { "name": "Exequiel Palacios",    "position": "MF",  "team": "Leverkusen","marketValue": 40,"points": 130, "startChance": 0.8  },
+  { "name": "Manuel Neuer",         "position": "TW",  "team": "Bayern",  "marketValue": 4,   "points": 100, "startChance": 0.9  }
+]
